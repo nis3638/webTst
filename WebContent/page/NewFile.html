@@ -1,0 +1,73 @@
+<%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>  
+<html>  
+  <head>  
+    <%  
+    com.nantian.ofpiwap.secure.Account loginAccount = com.nantian.ofpiwap.secure.SecurityContext.getLoginAccount();  
+    String accountId=loginAccount.getAccountId();  
+    boolean isSupervisor=com.nantian.ofpiwap.IWapContext.isSupervisor(accountId);  
+    %>  
+    <%@ include file="/screen/common/header.jsp"%>  
+    <script type="text/javascript">  
+     var _CONTEXT_PATH = '<%=request.getContextPath()%>';  
+     var _SuperUser = '<%=isSupervisor%>';  
+    </script>  
+    <title>数据库查看</title>  
+    <link href="<%=request.getContextPath()%>/css/tip-yellowsimple.css" rel="stylesheet" type="text/css"/>  
+    <script type='text/javascript' src='<%=request.getContextPath()%>/dwr/interface/dbReadDao.js'></script>  
+    <script type="text/javascript" src="<%=request.getContextPath()%>/js/jquery-1.7.1.min.js"></script>  
+    <script type="text/javascript" src="<%=request.getContextPath()%>/js/jquery.poshytip.min.js"></script>  
+    <script type="text/javascript" src="<%=request.getContextPath()%>/js/Tip.js"></script>  
+    <script type="text/javascript" src="<%=request.getContextPath()%>/js/Page2.js"></script>  
+    <script type="text/javascript" src="<%=request.getContextPath()%>/sysctrl/dbRead2.js"></script>  
+  
+    <style type="text/css">  
+    .scrollbar{  
+    overflow-x: auto;  
+    overflow-y: auto;  
+    width:100%;   
+    border :1px solid #c1d7ff;  
+    scrollbar-face-color:#DEDEDE;  
+    scrollbar-base-color:#F5F5F5;  
+    scrollbar-arrow-color:black;  
+    scrollbar-track-color:#F5F5F5;  
+    scrollbar-shadow-color:#EBF5FF;  
+    scrollbar-highlight-color:#F5F5F5;  
+    scrollbar-3dlight-color:#C3C3C3;  
+    scrollbar-darkshadow-Color:#9D9D9D;  
+    }  
+    .selected{  
+    cursor:hand;  
+    padding:3px;  
+    margin:3px;  
+    background-color: #3399FF;  
+    border-right:1px solid  gray;  
+    border-left:1px solid  gray  
+    }  
+    .unselected{  
+    cursor:hand;  
+    padding:3px;  
+    margin:3px;  
+    background-color: #D1EEEE  
+    }  
+    </style>  
+      
+  </head>  
+    
+  <body class="body_css" bgcolor="#ffffff">  
+     <div id="divPage1">  
+        <div id="divPage2"><img src="<%=request.getContextPath()%>/erm/img/prcture.gif" /></div>  
+        <div id="divPage3">  
+            <a href="#">首页</a>  
+            <a href="#"> 风险监控系统</a> >  
+            <a href="#"> 系统监控</a> >  
+            <font class="gray"> 数据库查看</font></div>  
+    </div>  
+    <br/>  
+        <textarea id="sqlText" rows="10" cols="100" style="font-family: Consolas;font-size: 15px;"  onkeyup="DbRead.ctrlenterEvent(event)"></textarea>  
+            <input id="todo" type="button" value="查询" class="btn_width11113" onclick="DbRead.toDo(1);" />  
+            <input id="toupdate" type="button" value="更新" class="btn_width11113" onclick="DbRead.toDo(0);" />  
+    <br/>  
+    <table width="450px" id='selectTable' border='0' cellpadding='0' cellspacing='0' style='margin-bottom: 3px'>  
+    </table>  
+  </body>  
+</html>  
